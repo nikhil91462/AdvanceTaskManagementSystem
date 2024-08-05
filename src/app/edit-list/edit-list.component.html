@@ -1,1 +1,33 @@
-<p>edit-list works!</p>
+<div class="card">
+    <div class="card-body">
+        <h2>Task List</h2>
+        <div class="addrowDiv">
+            <app-button [label]="'Add Details'" (onClick)="addRow()"></app-button>
+          </div>
+        <table class="table task_listTable">
+            <thead>
+                <tr>
+                    <th>title</th>
+                    <th>Status</th>
+                    <th>priority</th>
+                    <th>Due Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of selectedTask; let i = index;">
+                    <td><input type="text" [(ngModel)]="item.title" name="title-{{i}}"></td>
+                    <td><input type="text" [(ngModel)]="item.status" name="status-{{i}}"></td>
+                    <td><input type="date" [(ngModel)]="item.StartDate" name="priority-{{i}}"></td>
+                    <td><input type="date" [(ngModel)]="item.dueDate" name="dueDate-{{i}}"></td>
+                    <td><button (click)="DeleteRow(i)" title="Remove">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="saveDiv">
+            <app-button [label]="'Save Details'" (onClick)="saveDetails()"></app-button>
+        </div>
+
+    </div>
+</div>

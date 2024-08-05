@@ -60,7 +60,7 @@ export class MainListComponent {
 
   showDetails() {
     // this.router.navigate(['/task-detail'], { state: { Task: this.TaskList } });
-    this.router.navigate(['/task-detail'], { state: { Task: this.filteredTaskList } });
+    this.router.navigate(['/edit-list'], { state: { Task: this.filteredTaskList } });
   }
 
   filteredTaskList: Task[] = [];
