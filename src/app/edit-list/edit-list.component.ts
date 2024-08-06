@@ -17,7 +17,7 @@ export class EditListComponent {
   taskToAssign: any;
   isModalOpen:boolean = false;
 
-  constructor(private projectService: ProjectService, private taskService: TaskService, private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private projectService: ProjectService, private taskService: TaskService, private userService: UserService, private route: ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
     const projectId = parseInt(this.route.snapshot.paramMap.get('id')!);
@@ -50,7 +50,17 @@ export class EditListComponent {
     });
   }
 
+  newTaskName!: string;
 
-
+  addTask() {
+    const newTask = {
+      name: this.newTaskName,
+      projectId: this.project.id
+    };
+    this.taskService.createTask(newTask).subscribe((task: any) => {
+      this.tasks.push(task);
+      this.newTaskName = '';
+    });
+  }
 
 }

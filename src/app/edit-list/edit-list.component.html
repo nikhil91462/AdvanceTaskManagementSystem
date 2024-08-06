@@ -2,6 +2,14 @@
     <div *ngIf="!isModalOpen" class="card-body">
       <div class="project-detail">
         <h2>Project Detail</h2>
+
+        <div class="AddTaskDiv">
+            <input type="text" [(ngModel)]="newTaskName" placeholder="Enter new task name">
+            <div class="saveDiv">
+                <button type="submit" class="btn" (click)="addTask()">Add Task</button>
+            </div>
+        </div>
+
         <h3>{{ project.name }}</h3>
         <p>{{ project.description }}</p>
         <p>Start Date: {{ project.startDate | date }}</p>
@@ -10,12 +18,19 @@
         <ul>
           <li *ngFor="let task of tasks">
             <span>{{ task.name }}</span>
-            <span> ( {{ task.status }} )</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span *ngIf="task.status"> ( {{ task.status }} )</span>&nbsp;&nbsp;&nbsp;&nbsp;
             <button *ngIf="!task.assignedTo" (click)="showAssignUserModal(task)">Assign</button>
             <span *ngIf="task.assignedTo"> Assigned User : {{ task.assignedTo.name }}</span>
           </li>
         </ul>
         <p>Project Progress: {{ project.progress }}%</p>
+
+        <div class="AddTaskDiv">
+            <div class="addrowDiv">
+                <button type="button" class="btn" [routerLink]="['/main-list']" >Go To Main List</button>
+            </div>
+        </div>
+
       </div>
     </div>
   

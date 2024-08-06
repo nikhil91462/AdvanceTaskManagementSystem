@@ -22,11 +22,6 @@ export class UserService {
     return of(this.users.find(user => user.id === id));
   }
 
-  createUser(user: any): any {
-    this.users.push(user);
-    return of(user);
-  }
-
   updateUser(id: number, user: any): any {
     const index = this.users.findIndex(u => u.id === id);
     if (index !== -1) {
