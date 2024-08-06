@@ -10,6 +10,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    text-align: center;
   }
   
   .project-list li {
@@ -23,5 +24,7 @@
   
   .project-list span {
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 80px;
+    font-size: 18px;
   }
+
