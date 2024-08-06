@@ -26,6 +26,11 @@ export class EditListComponent {
         this.project = project;
         this.taskService.getTasks().subscribe((tasks: any[]) => {
           this.tasks = tasks.filter(task => task.projectId === projectId);
+          this.tasks.forEach(task => {
+            if (!task.comments) {
+              task.comments = [];
+            }
+          });
         });
       });
       this.userService.getUsers().subscribe((users: any[]) => {
@@ -61,6 +66,11 @@ export class EditListComponent {
       this.tasks.push(task);
       this.newTaskName = '';
     });
+  }
+
+  commentFlag:boolean= false;
+  comment(){
+    this.commentFlag = true;
   }
 
 }

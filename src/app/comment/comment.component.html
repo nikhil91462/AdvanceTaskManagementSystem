@@ -1,0 +1,7 @@
+<div>
+    <ul>
+      <li *ngFor="let comment of task.comments; let i=index;">commented : {{ comment.text }}</li>
+    </ul>
+    <input type="text" [(ngModel)]="newCommentText" placeholder="Enter comment">
+    <button (click)="addComment()">Add Comment</button>
+  </div>

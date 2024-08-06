@@ -7,6 +7,7 @@ import { MainListComponent } from './main-list/main-list.component';
 import { EditListComponent } from './edit-list/edit-list.component';
 import { ButtonComponent } from './button/button.component';
 import { FormsModule } from '@angular/forms';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
     MainListComponent,
     EditListComponent,
     ButtonComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

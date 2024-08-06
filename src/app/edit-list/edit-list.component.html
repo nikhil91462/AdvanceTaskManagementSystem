@@ -20,7 +20,9 @@
             <span>{{ task.name }}</span>
             <span *ngIf="task.status"> ( {{ task.status }} )</span>&nbsp;&nbsp;&nbsp;&nbsp;
             <button *ngIf="!task.assignedTo" (click)="showAssignUserModal(task)">Assign</button>
-            <span *ngIf="task.assignedTo"> Assigned User : {{ task.assignedTo.name }}</span>
+            <span *ngIf="task.assignedTo"> Assigned User : {{ task.assignedTo.name }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button *ngIf="!commentFlag" (click)="comment()">Comment</button>
+            <app-comment *ngIf="commentFlag" [task]="task"></app-comment>
           </li>
         </ul>
         <p><strong> Project Progress:  {{ project.progress }}% </strong></p>
