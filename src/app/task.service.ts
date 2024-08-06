@@ -12,7 +12,15 @@ export class TaskService {
     { id: 1, name: 'Task 1', projectId: 1, status: 'In Progress' },
     { id: 2, name: 'Task 2', projectId: 1, status: 'Completed' },
     { id: 3, name: 'Task 3', projectId: 2, status: 'In Progress' },
-    { id: 4, name: 'Task 4', projectId: 3, status: 'Not Started' }
+    { id: 4, name: 'Task 4', projectId: 3, status: 'Not Started' },
+    { id: 1, name: 'Task 1', projectId: 2, status: 'In Progress' },
+    { id: 2, name: 'Task 2', projectId: 4, status: 'Completed' },
+    { id: 3, name: 'Task 3', projectId: 4, status: 'In Progress' },
+    { id: 4, name: 'Task 4', projectId: 3, status: 'Not Started' },
+    { id: 1, name: 'Task 1', projectId: 5, status: 'In Progress' },
+    { id: 2, name: 'Task 2', projectId: 5, status: 'Completed' },
+    { id: 3, name: 'Task 3', projectId: 6, status: 'In Progress' },
+    { id: 4, name: 'Task 4', projectId: 6, status: 'Not Started' },
   ];
 
   getTasks(): any {

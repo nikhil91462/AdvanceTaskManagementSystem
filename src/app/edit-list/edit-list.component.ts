@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../project.service';
+import { TaskService } from '../task.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-edit-list',
@@ -11,34 +13,44 @@ export class EditListComponent {
 
   project: any;
   tasks!: any[];
+  users!: any[];
+  taskToAssign: any;
+  isModalOpen:boolean = false;
 
-  constructor(private projectService: ProjectService, private route: ActivatedRoute) { }
+  constructor(private projectService: ProjectService, private taskService: TaskService, private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const projectId = parseInt(this.route.snapshot.paramMap.get('id')!);
     if (projectId) {
       this.projectService.getProject(projectId).subscribe((project: any) => {
         this.project = project;
-        this.tasks = project.tasks;
+        this.taskService.getTasks().subscribe((tasks: any[]) => {
+          this.tasks = tasks.filter(task => task.projectId === projectId);
+        });
       });
-      
+      this.userService.getUsers().subscribe((users: any[]) => {
+        this.users = users;
+      });
     }
   }
 
-
+  showAssignUserModal(task: any) {
+    this.taskToAssign = task;
+    // Show the modal
+    // You can use a modal service or a boolean flag to show the modal
+    this.isModalOpen = true;
+  }
   
-  TaskList = [{
-    title: 'task1', status: 'Pending', priority: 'Low', dueDate: '10-10-2026', checked: false,
-  },
-  {
-    title: 'task2', status: 'Pending', priority: 'High', dueDate: '10-10-2026', checked: false,
-  },
-  {
-    title: 'task3', status: 'Pending', priority: 'Low', dueDate: '10-10-2026', checked: false,
-  },
-  {
-    title: 'task4', status: 'Pending', priority: 'Low', dueDate: '10-10-2026', checked: false,
-  },]
+  assignUserToTask(user: any) {
+    this.taskToAssign.assignedTo = user;
+    // Update the task in the database
+    this.taskService.updateTask(this.taskToAssign.id, this.taskToAssign).subscribe(() => {
+      // Hide the modal
+      this.isModalOpen = false;
+    });
+  }
+
+
 
 
 }

@@ -7,9 +7,12 @@ import { of } from 'rxjs';
 export class ProjectService {
 
   projects = [
-    { id: 1, name: 'Project 1', description: 'This is project 1', startDate: '2022-01-01', endDate: '2022-01-31' },
-    { id: 2, name: 'Project 2', description: 'This is project 2', startDate: '2022-02-01', endDate: '2022-02-28' },
-    { id: 3, name: 'Project 3', description: 'This is project 3', startDate: '2022-03-01', endDate: '2022-03-31' }
+    { id: 1, name: 'Project 1', description: 'This is project 1', startDate: '2022-01-01', endDate: '2022-01-31', progress: 40 },
+    { id: 2, name: 'Project 2', description: 'This is project 2', startDate: '2022-02-01', endDate: '2022-02-28', progress: 50 },
+    { id: 3, name: 'Project 3', description: 'This is project 3', startDate: '2022-03-01', endDate: '2022-03-31', progress: 60 },
+    { id: 4, name: 'Project 4', description: 'This is project 4', startDate: '2022-01-01', endDate: '2022-01-31', progress: 40 },
+    { id: 5, name: 'Project 5', description: 'This is project 5', startDate: '2022-02-01', endDate: '2022-02-28', progress: 50 },
+    { id: 6, name: 'Project 6', description: 'This is project 6', startDate: '2022-03-01', endDate: '2022-03-31', progress: 60 },
   ];
 
   getProjects(): any {

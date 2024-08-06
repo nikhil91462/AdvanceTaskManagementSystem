@@ -1,24 +1,36 @@
 <div class="card">
-    <div class="card-body">
-
-        <div class="project-detail">
-            <h2>Project Detail</h2>
-            <h3>{{ project.name }}</h3>
-            <p>{{ project.description }}</p>
-            <p>Start Date: {{ project.startDate | date }}</p>
-            <p>End Date: {{ project.endDate | date }}</p>
-            <h3>Tasks</h3>
-            <ul>
-              <li *ngFor="let task of tasks">
-                <span>{{ task.name }}</span>
-                <span>{{ task.status }}</span>
-              </li>
-            </ul>
-            <p>Project Progress: {{ project.progress }}%</p>
-          </div>
-
-
-        
-
+    <div *ngIf="!isModalOpen" class="card-body">
+      <div class="project-detail">
+        <h2>Project Detail</h2>
+        <h3>{{ project.name }}</h3>
+        <p>{{ project.description }}</p>
+        <p>Start Date: {{ project.startDate | date }}</p>
+        <p>End Date: {{ project.endDate | date }}</p>
+        <h3>Tasks</h3>
+        <ul>
+          <li *ngFor="let task of tasks">
+            <span>{{ task.name }}</span>
+            <span> ( {{ task.status }} )</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button *ngIf="!task.assignedTo" (click)="showAssignUserModal(task)">Assign</button>
+            <span *ngIf="task.assignedTo"> Assigned User : {{ task.assignedTo.name }}</span>
+          </li>
+        </ul>
+        <p>Project Progress: {{ project.progress }}%</p>
+      </div>
     </div>
-</div>
+  
+    <!-- Assign User Modal -->
+    <div *ngIf="isModalOpen" class="" >
+      <div class="modal-header">
+        <h4>Assign User</h4>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li *ngFor="let user of users">
+            <input (click)="assignUserToTask(user)" type="radio" name="user.name" id="">&nbsp;&nbsp;&nbsp;&nbsp;
+            <a >{{ user.name }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

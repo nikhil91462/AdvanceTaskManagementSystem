@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     MainListComponent,
     EditListComponent,
-    ButtonComponent
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,15 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectService } from '../project.service';
 
-interface Task {
-  id?: number;
-  title: string;
-  status: string;
-  StartDate: string;
-  dueDate: string;
-  description?: string;
-  checked: boolean;
-}
+
 
 
 @Component({
@@ -20,10 +12,7 @@ interface Task {
 })
 export class MainListComponent {
 
-  tasks:Task[] = [];
-  statusFilter:string = '';
-  sortOrder:'asc' | 'desc' = 'asc';
-  selectedRows:any = [];
+
 
 
   
