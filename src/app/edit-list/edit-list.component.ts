@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProjectService } from '../project.service';
 
 @Component({
   selector: 'app-edit-list',
@@ -8,35 +9,24 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditListComponent {
 
-  selectedTask: any;
+  project: any;
+  tasks!: any[];
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private projectService: ProjectService, private route: ActivatedRoute) { }
 
+  ngOnInit(): void {
+    const projectId = parseInt(this.route.snapshot.paramMap.get('id')!);
+    if (projectId) {
+      this.projectService.getProject(projectId).subscribe((project: any) => {
+        this.project = project;
+        this.tasks = project.tasks;
+      });
+      
+    }
   }
+
 
   
-  ngOnInit(): void {
-    console.log(history.state.Task,"history.state.Task");
-    
-    this.selectedTask = history.state.Task;
-    // this.selectedTask.forEach((item:any) => {
-    //   item.dueDate = new Date(ite)
-    // });
-  }
-
-  addRow() {
-    this.selectedTask.push({});
-  }
-
-
-  DeleteRow(i:any){
-    this.selectedTask.splice(i,1);
-  }
-
-  saveDetails() {
-    this.router.navigate(['/main-list'], { state: { Task: this.selectedTask } });
-  }
-
   TaskList = [{
     title: 'task1', status: 'Pending', priority: 'Low', dueDate: '10-10-2026', checked: false,
   },

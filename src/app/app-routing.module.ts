@@ -6,7 +6,7 @@ import { MainListComponent } from './main-list/main-list.component';
 const routes: Routes = [
   
   { path: '',component: MainListComponent},
-  { path: 'edit-list',component: EditListComponent },
+  { path: 'edit-list/:id' ,component: EditListComponent },
   { path: 'main-list',component: MainListComponent },
 
   ];

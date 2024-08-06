@@ -1,33 +1,24 @@
 <div class="card">
     <div class="card-body">
-        <h2>Task List</h2>
-        <div class="addrowDiv">
-            <app-button [label]="'Add Details'" (onClick)="addRow()"></app-button>
-          </div>
-        <table class="table task_listTable">
-            <thead>
-                <tr>
-                    <th>title</th>
-                    <th>Status</th>
-                    <th>priority</th>
-                    <th>Due Date</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of selectedTask; let i = index;">
-                    <td><input type="text" [(ngModel)]="item.title" name="title-{{i}}"></td>
-                    <td><input type="text" [(ngModel)]="item.status" name="status-{{i}}"></td>
-                    <td><input type="date" [(ngModel)]="item.StartDate" name="priority-{{i}}"></td>
-                    <td><input type="date" [(ngModel)]="item.dueDate" name="dueDate-{{i}}"></td>
-                    <td><button (click)="DeleteRow(i)" title="Remove">Delete</button></td>
-                </tr>
-            </tbody>
-        </table>
 
-        <div class="saveDiv">
-            <app-button [label]="'Save Details'" (onClick)="saveDetails()"></app-button>
-        </div>
+        <div class="project-detail">
+            <h2>Project Detail</h2>
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+            <p>Start Date: {{ project.startDate | date }}</p>
+            <p>End Date: {{ project.endDate | date }}</p>
+            <h3>Tasks</h3>
+            <ul>
+              <li *ngFor="let task of tasks">
+                <span>{{ task.name }}</span>
+                <span>{{ task.status }}</span>
+              </li>
+            </ul>
+            <p>Project Progress: {{ project.progress }}%</p>
+          </div>
+
+
+        
 
     </div>
 </div>

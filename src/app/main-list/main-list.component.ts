@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProjectService } from '../project.service';
 
 interface Task {
   id?: number;
@@ -20,7 +21,6 @@ interface Task {
 export class MainListComponent {
 
   tasks:Task[] = [];
-  // TaskList: any;
   statusFilter:string = '';
   sortOrder:'asc' | 'desc' = 'asc';
   selectedRows:any = [];
@@ -43,41 +43,15 @@ export class MainListComponent {
 
   
 
-  constructor(private router:Router){
 
-  }
+  projects!: any[];
 
-  ngOnInit():void{
-    // this.taskService.getTasks().subscribe(tasks => this.tasks = tasks);
-    this.filterTasks();
-    if (history.state.Task) {
-      this.TaskList = history.state.Task;
-      this.filteredTaskList = history.state.Task;
-      
-    }
-  }
+  constructor(private projectService: ProjectService) { }
 
-
-  showDetails() {
-    // this.router.navigate(['/task-detail'], { state: { Task: this.TaskList } });
-    this.router.navigate(['/edit-list'], { state: { Task: this.filteredTaskList } });
-  }
-
-  filteredTaskList: Task[] = [];
-  dueDateFilter: string = '';
-
-  filterTasks() {
-    let filteredList = this.TaskList;
-
-    if (this.statusFilter !== '') {
-      filteredList = filteredList.filter(task => task.status == this.statusFilter);
-    }
-
-    if (this.dueDateFilter !== '') {
-      filteredList = filteredList.filter(task => new Date(task.dueDate) <= new Date(this.dueDateFilter));
-    }
-
-    this.filteredTaskList = filteredList;
+  ngOnInit(): void {
+    this.projectService.getProjects().subscribe((projects: any[]) => {
+      this.projects = projects;
+    });
   }
 
 
